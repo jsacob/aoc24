@@ -13,7 +13,8 @@ fs.readFile("day4.txt", "utf-8", (err, data) => {
   }
 
   // Calculate total XMAS found
-  console.log(xSearch(xmas) + ySearch(xmas) + diagonalSearch(xmas));
+  // console.log(xSearch(xmas) + ySearch(xmas) + diagonalSearch(xmas));
+  console.log(diagonalSearch(xmas));
 });
 
 function xSearch(xmas) {
@@ -68,34 +69,84 @@ function diagonalSearch(xmas) {
   let count = 0;
 
   // T-L to B-R diagonal
-  for (let i = 0; i <= xmas.length - 4; i++) {
-    for (let j = 0; j <= xmas[i].length - 4; j++) {
+  for (let i = 0; i <= xmas.length - 3; i++) {
+    for (let j = 0; j <= xmas[i].length - 3; j++) {
       if (
-        xmas[i][j] === "X" &&
-        xmas[i + 1][j + 1] === "M" &&
-        xmas[i + 2][j + 2] === "A" &&
-        xmas[i + 3][j + 3] === "S"
+        xmas[i][j] === "M" &&
+        xmas[i + 1][j + 1] === "A" &&
+        xmas[i + 2][j] === "M" &&
+        xmas[i][j + 2] === "S" &&
+        xmas[i + 2][j + 2] === "S"
       ) {
         count++;
+        console.log(
+          `FOUND XMAS AT cords: (${i}, ${j}), (${i + 1}, ${j + 1}), (${
+            i + 2
+          }, ${j}), (${i}, ${j + 2}), (${i + 2}, ${j + 2})`
+        );
+      }
+    }
+  }
+
+  for (let i = 0; i <= xmas.length - 3; i++) {
+    for (let j = 0; j <= xmas[i].length - 3; j++) {
+      if (
+        xmas[i][j] === "S" &&
+        xmas[i + 1][j + 1] === "A" &&
+        xmas[i + 2][j] === "S" &&
+        xmas[i][j + 2] === "M" &&
+        xmas[i + 2][j + 2] === "M"
+      ) {
+        count++;
+        console.log(
+          `FOUND XMAS AT cords: (${i}, ${j}), (${i + 1}, ${j + 1}), (${
+            i + 2
+          }, ${j}), (${i}, ${j + 2}), (${i + 2}, ${j + 2})`
+        );
       }
     }
   }
 
   // T-R to B-L diagonal
-  for (let i = 0; i <= xmas.length - 4; i++) {
-    for (let j = 3; j < xmas[i].length; j++) {
+  for (let i = 0; i <= xmas.length - 3; i++) {
+    for (let j = 1; j <= xmas[i].length - 2; j++) {
       if (
-        xmas[i][j] === "X" &&
-        xmas[i + 1][j - 1] === "M" &&
-        xmas[i + 2][j - 2] === "A" &&
-        xmas[i + 3][j - 3] === "S"
+        xmas[i][j - 1] === "S" &&
+        xmas[i][j + 1] === "S" &&
+        xmas[i + 1][j] === "A" &&
+        xmas[i + 2][j - 1] === "M" &&
+        xmas[i + 2][j + 1] === "M"
       ) {
         count++;
+        console.log(
+          `FOUND SAM AT cords: (${i}, ${j - 1}), (${i}, ${j + 1}), (${
+            i + 1
+          }, ${j}), (${i + 2}, ${j - 1}), (${i + 2}, ${j + 1})`
+        );
       }
     }
   }
 
-  // B-L to T-R diagonal
+  for (let i = 0; i <= xmas.length - 3; i++) {
+    for (let j = 1; j <= xmas[i].length - 2; j++) {
+      if (
+        xmas[i][j - 1] === "M" &&
+        xmas[i][j + 1] === "M" &&
+        xmas[i + 1][j] === "A" &&
+        xmas[i + 2][j - 1] === "S" &&
+        xmas[i + 2][j + 1] === "S"
+      ) {
+        count++;
+        console.log(
+          `FOUND MAS AT cords: (${i}, ${j - 1}), (${i}, ${j + 1}), (${
+            i + 1
+          }, ${j}), (${i + 2}, ${j - 1}), (${i + 2}, ${j + 1})`
+        );
+      }
+    }
+  }
+
+  /* B-L to T-R diagonal
   for (let i = xmas.length - 1; i >= 3; i--) {
     for (let j = 0; j <= xmas[i].length - 4; j++) {
       if (
@@ -123,6 +174,6 @@ function diagonalSearch(xmas) {
     }
   }
 
-  console.log("XMAS FOUND DIAGONALLY: ", count);
+  console.log("XMAS FOUND DIAGONALLY: ", count); */
   return count;
 }

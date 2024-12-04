@@ -46,6 +46,8 @@ fs.readFile("F.txt", "utf-8", (err, data) => {
     }
   }
 
+  
+  
   console.log("Total Product:", totalProduct);
 
   console.log("Result object:", result);

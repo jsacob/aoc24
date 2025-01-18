@@ -5,16 +5,14 @@ fs.readFile("day02.txt", "utf-8", (err, data) => {
     console.error(err);
     return;
   }
-
   let number = data
     .trim()
     .split("\n")
     .map((line) => line.trim().split(/\s+/).map(Number));
 
-  // accessnum(number);
+  accessnum(number);
   checkifVal(number);
 });
-
 function accessnum(line) {
   for (let i = 0; i < line.length; i++) {
     for (let j = 0; j < line[i].length; j++) {
@@ -22,7 +20,6 @@ function accessnum(line) {
     }
   }
 }
-
 //part 1
 function checkifVal(lines) {
   let validlines = 0;
@@ -61,7 +58,6 @@ function checkifVal(lines) {
 function checkRemoveal(report) {
   for (let i = 0; i < report.length; i++) {
     let modifiedReport = [...report.slice(0, i), ...report.slice(i + 1)];
-
     if (isIncreasingOrDecreasing(modifiedReport)) {
       return true;
     }

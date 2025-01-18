@@ -9,7 +9,7 @@ let data = fs
 const rows = 7;
 const cols = 7;
 const Arr2D = new Array(rows).fill().map(() => new Array(cols).fill(0));
-console.log(Arr2D);
+// console.log(Arr2D);
 
 data.forEach(([x, y]) => {
   if (x >= 0 && x < cols && y >= 0 && y < rows) {
